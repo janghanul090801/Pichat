@@ -3,7 +3,7 @@
 package ent
 
 import (
-	"Pichat/ent/user"
+	"Pichat/pkg/ent/user"
 	"fmt"
 	"strings"
 

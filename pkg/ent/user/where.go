@@ -3,7 +3,7 @@
 package user
 
 import (
-	"Pichat/ent/predicate"
+	"Pichat/pkg/ent/predicate"
 
 	"entgo.io/ent/dialect/sql"
 )

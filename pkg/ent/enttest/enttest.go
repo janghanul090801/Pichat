@@ -5,11 +5,11 @@ package enttest
 import (
 	"context"
 
-	"Pichat/ent"
+	"Pichat/pkg/ent"
 	// required by schema hooks.
-	_ "Pichat/ent/runtime"
+	_ "Pichat/pkg/ent/runtime"
 
-	"Pichat/ent/migrate"
+	"Pichat/pkg/ent/migrate"
 
 	"entgo.io/ent/dialect/sql/schema"
 )

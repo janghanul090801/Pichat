@@ -3,8 +3,8 @@
 package ent
 
 import (
-	"Pichat/ent/schema"
-	"Pichat/ent/user"
+	"Pichat/pkg/ent/schema"
+	"Pichat/pkg/ent/user"
 )
 
 // The init function reads all schema descriptors with runtime code

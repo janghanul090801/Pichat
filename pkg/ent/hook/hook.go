@@ -3,7 +3,7 @@
 package hook
 
 import (
-	"Pichat/ent"
+	"Pichat/pkg/ent"
 	"context"
 	"fmt"
 )

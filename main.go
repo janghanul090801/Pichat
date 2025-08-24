@@ -1,13 +1,17 @@
 package main
 
 import (
+	"Pichat/api/routes"
+	"Pichat/pkg/user"
 	"context"
 	"fmt"
+	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/joho/godotenv"
 	"log"
 	"os"
 
-	"Pichat/ent"
+	"Pichat/pkg/ent"
 
 	_ "github.com/lib/pq"
 )
@@ -28,4 +32,19 @@ func main() {
 	if err := client.Schema.Create(context.Background()); err != nil {
 		log.Fatalf("failed creating schema resources: %v", err)
 	}
+
+	ctx := context.Background()
+
+	userRepo := user.NewRepo(client, ctx)
+	userService := user.NewService(userRepo)
+
+	app := fiber.New()
+	app.Use(cors.New(cors.Config{
+		AllowOrigins: "*",
+	}))
+
+	api := app.Group("/api")
+	routes.UserRouter(api, userService)
+
+	log.Fatal(app.Listen(":3000"))
 }

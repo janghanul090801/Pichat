@@ -9,9 +9,9 @@ import (
 	"log"
 	"reflect"
 
-	"Pichat/ent/migrate"
+	"Pichat/pkg/ent/migrate"
 
-	"Pichat/ent/user"
+	"Pichat/pkg/ent/user"
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect"

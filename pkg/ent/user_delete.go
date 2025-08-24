@@ -3,8 +3,8 @@
 package ent
 
 import (
-	"Pichat/ent/predicate"
-	"Pichat/ent/user"
+	"Pichat/pkg/ent/predicate"
+	"Pichat/pkg/ent/user"
 	"context"
 
 	"entgo.io/ent/dialect/sql"
