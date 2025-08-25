@@ -2,10 +2,18 @@ package user
 
 import (
 	"Pichat/pkg/ent"
+	"Pichat/pkg/entities"
 	"context"
 )
 
-type Repository interface{}
+type Repository interface {
+	CreateUser(user *entities.User) (*entities.User, error)
+	ReadUser() (*[]entities.User, error)
+	GetUserById(id int) (*entities.User, error)
+	GetUserByEmail(email string) (*entities.User, error)
+	UpdateUser(user *entities.User, id int) (*entities.User, error)
+	DeleteUser(id int) error
+}
 
 type repository struct {
 	DBConn  *ent.Client
@@ -17,4 +25,28 @@ func NewRepo(dbconn *ent.Client, ctx context.Context) Repository {
 		DBConn:  dbconn,
 		Context: ctx,
 	}
+}
+
+func (r *repository) CreateUser(user *entities.User) (*entities.User, error) {
+	return nil, nil
+}
+
+func (r *repository) ReadUser() (*[]entities.User, error) {
+	return nil, nil
+}
+
+func (r *repository) GetUserById(id int) (*entities.User, error) {
+	return nil, nil
+}
+
+func (r *repository) GetUserByEmail(email string) (*entities.User, error) {
+	return nil, nil
+}
+
+func (r *repository) UpdateUser(user *entities.User, id int) (*entities.User, error) {
+	return nil, nil
+}
+
+func (r *repository) DeleteUser(id int) error {
+	return nil
 }
