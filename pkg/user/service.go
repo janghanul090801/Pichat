@@ -1,11 +1,14 @@
 package user
 
-import "Pichat/pkg/entities"
+import (
+	"Pichat/api/presenter"
+	"Pichat/pkg/entities"
+)
 
 type Service interface {
 	InsertUser(user *entities.User) (*entities.User, error)
-	ReadAllUsers() ([]*entities.User, error)
-	ReadUser(id int) (*entities.User, error)
+	ReadAllUsers() ([]*presenter.UserResponse, error)
+	ReadUser(id int) (*presenter.UserResponse, error)
 	UpdateUser(user *entities.User) (*entities.User, error)
 	RemoveUser(id int) error
 }
@@ -19,12 +22,12 @@ func (s service) InsertUser(user *entities.User) (*entities.User, error) {
 	panic("implement me")
 }
 
-func (s service) ReadAllUsers() ([]*entities.User, error) {
+func (s service) ReadAllUsers() ([]*presenter.UserResponse, error) {
 	//TODO implement me
 	panic("implement me")
 }
 
-func (s service) ReadUser(id int) (*entities.User, error) {
+func (s service) ReadUser(id int) (*presenter.UserResponse, error) {
 	//TODO implement me
 	panic("implement me")
 }

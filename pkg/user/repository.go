@@ -1,6 +1,7 @@
 package user
 
 import (
+	"Pichat/api/presenter"
 	"Pichat/pkg/ent"
 	"Pichat/pkg/entities"
 	"context"
@@ -8,7 +9,7 @@ import (
 
 type Repository interface {
 	CreateUser(user *entities.User) (*entities.User, error)
-	ReadUser() (*[]entities.User, error)
+	ReadUser() (*[]presenter.UserResponse, error)
 	GetUserById(id int) (*entities.User, error)
 	GetUserByEmail(email string) (*entities.User, error)
 	UpdateUser(user *entities.User, id int) (*entities.User, error)
@@ -31,7 +32,7 @@ func (r *repository) CreateUser(user *entities.User) (*entities.User, error) {
 	return nil, nil
 }
 
-func (r *repository) ReadUser() (*[]entities.User, error) {
+func (r *repository) ReadUser() (*[]presenter.UserResponse, error) {
 	return nil, nil
 }
 

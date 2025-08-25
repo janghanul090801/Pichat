@@ -9,4 +9,6 @@ import (
 func UserRouter(app fiber.Router, service user.Service) {
 	app = app.Group("/user")
 	app.Get("/", handlers.HelloWorld(service))
+
+	// private = app.Group("private", middleware.JWTAuthMiddleware)
 }
