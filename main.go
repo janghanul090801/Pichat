@@ -2,7 +2,9 @@ package main
 
 import (
 	"Pichat/api/routes"
-	"Pichat/pkg/user"
+	"Pichat/api/validator"
+	"Pichat/pkg/auth"
+	"Pichat/pkg/users"
 	"context"
 	"fmt"
 	"github.com/gofiber/fiber/v2"
@@ -23,7 +25,7 @@ func main() {
 		log.Fatal("Error loading .env file")
 	}
 
-	client, err := ent.Open("postgres", fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s sslmode=disable", os.Getenv("DB_HOST"), os.Getenv("DB_PORT"), os.Getenv("DB_USERNAME"), os.Getenv("DB_NAME"), os.Getenv("DB_PASSWORD")))
+	client, err := ent.Open("postgres", fmt.Sprintf("host=%s port=%s users=%s dbname=%s password=%s sslmode=disable", os.Getenv("DB_HOST"), os.Getenv("DB_PORT"), os.Getenv("DB_USERNAME"), os.Getenv("DB_NAME"), os.Getenv("DB_PASSWORD")))
 	if err != nil {
 		log.Fatalf("failed opening connection to postgres: %v", err)
 	}
@@ -35,8 +37,12 @@ func main() {
 
 	ctx := context.Background()
 
-	userRepo := user.NewRepo(client, ctx)
-	userService := user.NewService(userRepo)
+	// repository & service
+	userRepo := users.NewRepo(client, ctx)
+	userService := users.NewService(userRepo)
+	authService := auth.NewService(userRepo)
+
+	validator.InitValidator()
 
 	app := fiber.New()
 	app.Use(cors.New(cors.Config{

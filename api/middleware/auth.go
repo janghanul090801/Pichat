@@ -40,3 +40,7 @@ func JWTAuthMiddleware(c *fiber.Ctx) error {
 	c.Locals("userID", userID)
 	return c.Next()
 }
+
+func GetCurrentUserEmail(c *fiber.Ctx) string {
+	return c.Locals("email").(string)
+}

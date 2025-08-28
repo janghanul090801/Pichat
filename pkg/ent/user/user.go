@@ -10,7 +10,7 @@ const (
 	// Label holds the string label denoting the user type in the database.
 	Label = "user"
 	// FieldID holds the string denoting the id field in the database.
-	FieldID = "ID"
+	FieldID = "id"
 	// FieldName holds the string denoting the name field in the database.
 	FieldName = "NAME"
 	// FieldEmail holds the string denoting the email field in the database.
@@ -46,8 +46,6 @@ var (
 	EmailValidator func(string) error
 	// PasswordValidator is a validator for the "password" field. It is called by the builders before save.
 	PasswordValidator func(string) error
-	// IDValidator is a validator for the "id" field. It is called by the builders before save.
-	IDValidator func(int) error
 )
 
 // OrderOption defines the ordering options for the User queries.

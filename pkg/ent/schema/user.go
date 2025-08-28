@@ -13,10 +13,6 @@ type User struct {
 // Fields of the User.
 func (User) Fields() []ent.Field {
 	return []ent.Field{
-		field.Int("id").
-			Positive().
-			Unique().
-			StorageKey("ID"),
 		field.String("name").
 			NotEmpty().
 			StorageKey("NAME"),
