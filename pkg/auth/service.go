@@ -3,7 +3,6 @@ package auth
 import (
 	"Pichat/pkg/users"
 	"github.com/golang-jwt/jwt/v5"
-	"golang.org/x/crypto/bcrypt"
 	"os"
 	"time"
 )
@@ -16,6 +15,7 @@ type Service interface {
 
 type service struct {
 	userRepository users.Repository
+	passwordHasher PasswordHasher
 }
 
 func (s *service) GenerateJWToken(email string) (string, error) {
@@ -34,17 +34,16 @@ func (s *service) GenerateJWToken(email string) (string, error) {
 }
 
 func (s *service) CheckPassword(password string, hash string) bool {
-	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
-	return err == nil
+	return s.passwordHasher.ComparePassword(hash, password)
 }
 
 func (s *service) HashPassword(password string) (string, error) {
-	bytes, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
-	return string(bytes), err
+	return s.passwordHasher.HashPassword(password)
 }
 
-func NewService(userRepo users.Repository) Service {
+func NewService(userRepo users.Repository, passwordHasher PasswordHasher) Service {
 	return &service{
 		userRepository: userRepo,
+		passwordHasher: passwordHasher,
 	}
 }

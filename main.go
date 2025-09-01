@@ -40,7 +40,8 @@ func main() {
 	// repository & service
 	userRepo := users.NewRepo(client, ctx)
 	userService := users.NewService(userRepo)
-	authService := auth.NewService(userRepo)
+	passwordHasher := auth.NewPasswordHasher()
+	authService := auth.NewService(userRepo, passwordHasher)
 
 	validator.InitValidator()
 
@@ -50,7 +51,7 @@ func main() {
 	}))
 
 	api := app.Group("/api")
-	routes.UserRouter(api, userService)
+	routes.UserRouter(api, userService, authService)
 
 	log.Fatal(app.Listen(":3000"))
 }
